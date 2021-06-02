@@ -1,0 +1,359 @@
+﻿@using OnlineExaminationSystem.DAL.DataConnection
+
+@{
+    using (OnlineExaminationDatabaseEntities _entities = new OnlineExaminationDatabaseEntities())
+    {
+        var settings = _entities.ApplicationSettings.FirstOrDefault();
+        ViewBag.AppName = settings.AppName;
+        string LogoBase64 = Convert.ToBase64String(settings.Logo);
+        ViewBag.LogoSrc = string.Format("data:image/gif;base64,{0}", LogoBase64);
+
+        string FaviconBase64 = Convert.ToBase64String(settings.Favicon);
+        ViewBag.Favicon = string.Format("data:image/gif;base64,{0}", FaviconBase64);
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>@ViewBag.Title | @ViewBag.AppName</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Admindek Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="@ViewBag.Favicon" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- feather icon -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/icon/feather/css/feather.css">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/css/font-awesome-n.min.css">
+    <!-- Notification.css -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/pages/notification/notification.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/animate.css/css/animate.css">
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/pages/data-table/css/buttons.dataTables.min.css">
+    <!-- sweet alert framework -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/sweetalert/css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
+    <!-- animation nifty modal window effects css -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/css/component.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/css/widget.css">
+</head>
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-bar"></div>
+    </div>
+    <!-- [ Pre-loader ] end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <!-- [ Header ] start -->
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a href="index-2.html">
+                            <img class="img-fluid" src="@ViewBag.LogoSrc" alt="Theme-Logo"  style=" width:280px; height:60px; top:20%"/>
+                        </a>
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu icon-toggle-right"></i>
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                    <i class="full-screen feather icon-maximize"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="~/Areas/Admin/Contents/images/avatar.png" class="img-radius" alt="User-Profile-Image">
+                                        @if (Session["UserId"] != null)
+                                        {
+                                    <span>@Session["Name"].ToString()</span>
+                                        }
+                                        else
+                                        {
+                                            Response.Redirect("~/Account/Login", true);
+                                        }
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                       
+                                        <li>
+                                            <a href="~/Account/Logout">
+                                                <i class="feather icon-log-out"></i> Logout
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <!-- [ navigation menu ] start -->
+                    <nav class="pcoded-navbar">
+                        <div class="nav-list">
+                            <div class="pcoded-inner-navbar main-menu">
+                                <div class="pcoded-navigation-label">Navigation</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                            <span class="pcoded-mtext">Dashboard</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="~/Admin/Home/Index" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Analytics</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @if (Session["ApplicantManagement"].ToString() == "True")
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="feather icon-user-check"></i></span>
+                                                <span class="pcoded-mtext">Applicants management</span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                @if (Session["ManageApplicants"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/Applicants/ManageApplicants" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Manage applicants</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (Session["AssessmentManagement"].ToString() == "True")
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
+                                                <span class="pcoded-mtext">Assessment management</span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                @if (Session["ManageAssessment"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/Assessment/ManageAssessments" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Manage assessments</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (Session["VaccancyManagement"].ToString() == "True")
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="feather icon-link"></i></span>
+                                                <span class="pcoded-mtext">Vaccancy management</span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                @if (Session["ManageVaccancy"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/Vaccancy/ManageVaccancies" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Manage vaccancies</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (Session["UserManagement"].ToString() == "True")
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="feather icon-user-check"></i></span>
+                                                <span class="pcoded-mtext">User management</span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                @if (Session["ManageUsers"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/User/Manage" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Manage users</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                @if (Session["ManageRoles"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/User/ManageRoles" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Manage roles</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (Session["SettingsManagement"].ToString() == "True")
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                                                <span class="pcoded-mtext">Settings</span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                @if (Session["ApplicationSettings"].ToString() == "True")
+                                                {
+                                                    <li class="">
+                                                        <a href="~/Admin/ApplicationSettings/Manage" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Application settings</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- [ navigation menu ] end -->
+                    <div class="pcoded-content">
+                        @RenderBody()
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/popper.js/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <!-- waves js -->
+    <script src="~/Areas/Admin/Contents/assets/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/pages/form-validation/validate.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/js/bootstrap-growl.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/pages/notification/notification.js"></script>
+
+    <!-- data-table js -->
+    <script src="~/Areas/Admin/Contents/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Contents/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/Contents/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/Contents/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <!-- Custom js -->
+    <!-- sweet alert js -->
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/sweetalert/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/js/modal.js"></script>
+    <!-- sweet alert modal.js intialize js -->
+    <!-- modalEffects js nifty modal window effects -->
+    <script src="~/Areas/Admin/Contents/assets/js/classie.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/js/modalEffects.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/js/pcoded.min.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/js/vertical/vertical-layout.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/js/script.min.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Scripts/Global.js"></script>
+
+    <script src="~/Scripts/Validation.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/pages/form-validation/validate.js"></script>
+
+
+
+
+    <script>
+            function notify(message, icon, type, animIn, animOut) {
+                $.growl({
+                    icon: icon,
+                    message: message,
+                    url: ''
+                }, {
+                    element: 'body',
+                    type: type,
+                    allow_dismiss: true,
+                    offset: {
+                        x: 30,
+                        y: 30
+                    },
+                    spacing: 10,
+                    z_index: 999999,
+                    delay: 2500,
+                    timer: 1000,
+                    url_target: '_blank',
+                    mouse_over: false,
+                    animate: {
+                        enter: animIn,
+                        exit: animOut
+                    },
+                    icon_type: 'class',
+                    template: '<div data-growl="container" class="alert" role="alert">' +
+                        '<button type="button" class="close" data-growl="dismiss">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '<span class="sr-only">Close</span>' +
+                        '</button>' +
+                        '<span data-growl="icon"></span>' +
+                        '<span data-growl="title"></span>' +
+                        '<span data-growl="message"></span>' +
+                        '<a href="#" data-growl="url"></a>' +
+                        '</div>'
+                });
+            };
+
+        $(window).on('load', function () {
+            @if(ViewBag.ShowAlert == true)
+            {
+                <text>
+            var message = "@TempData["message"].ToString()";
+            var nIcons = "@TempData["icon"]";
+            var nType = "inverse"
+            var nAnimIn = "animated bounceInLeft";
+            var nAnimOut = "animated bounceOutLeft";
+            notify(message, nIcons, nType, nAnimIn, nAnimOut);
+            </text>
+            }
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+
+
+</html>

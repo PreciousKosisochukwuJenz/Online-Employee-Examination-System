@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<RandomQuestions>
+  <RandomQuestions>
+    <Question>The three solutions of the equation f(x) = 0 are -2, 0, and 3. Therefore, the three solutions of the equation f(x - 2) = 0 are</Question>
+    <QuestionID>12</QuestionID>
+    <Id>12</Id>
+    <QuestionType>Multi_Choice</QuestionType>
+    <Options>
+      <Option>- 4, -2, and 1</Option>
+      <Option>4, 2, and 5</Option>
+      <Option>0, 2 and 5</Option>
+      <Option> -2, 0 and 3</Option>
+    </Options>
+    <UserAnswer>- 4, -2, and 1</UserAnswer>
+  </RandomQuestions>
+  <RandomQuestions>
+    <Question>Five different books (A, B, C, D and E) are to be arranged on a shelf. Books C and D are to be arranged first and second starting from the right of the shelf. The number of different orders in which books A, B and E may be arranged is</Question>
+    <QuestionID>15</QuestionID>
+    <Id>15</Id>
+    <QuestionType>Multi_Choice</QuestionType>
+    <Options>
+      <Option>2!</Option>
+      <Option>5!</Option>
+      <Option>3!</Option>
+      <Option>3! * 2!</Option>
+    </Options>
+    <UserAnswer>5!</UserAnswer>
+  </RandomQuestions>
+  <RandomQuestions>
+    <Question>The mean of a data set is equal to 10 and its standard deviation is equal to 1. If we add 5 to each data value, then the mean and standard deviation become</Question>
+    <QuestionID>16</QuestionID>
+    <Id>16</Id>
+    <QuestionType>Multi_Choice</QuestionType>
+    <Options>
+      <Option>mean = 10 , standard deviation = 6</Option>
+      <Option> mean = 15 , standard deviation = 1</Option>
+      <Option> mean = 15 , standard deviation = 6</Option>
+      <Option> mean = 10 , standard deviation = 1</Option>
+    </Options>
+    <UserAnswer> mean = 15 , standard deviation = 1</UserAnswer>
+  </RandomQuestions>
+  <RandomQuestions>
+    <Question>If Logx (1 / 8) = - 3 / 2, then x is equal to</Question>
+    <QuestionID>1</QuestionID>
+    <Id>1</Id>
+    <QuestionType>Multi_Choice</QuestionType>
+    <Options>
+      <Option>10</Option>
+      <Option>4</Option>
+      <Option>-4</Option>
+      <Option>01-Apr</Option>
+    </Options>
+    <UserAnswer>4</UserAnswer>
+  </RandomQuestions>
+  <RandomQuestions>
+    <Question>&lt;p&gt;&lt;strong style="color: #157dec; font-family: arial; font-size: 15px; background-color: #f0f0f0;"&gt;A clock strikes once at 1 o&amp;rsquo;clock, &lt;em&gt;twice &lt;/em&gt;at 2 o&amp;rsquo;clock, thrice at 3 o&amp;rsquo;clock and so on. How many times will it strike in 24 hours?&lt;/strong&gt;&lt;/p&gt;</Question>
+    <QuestionID>23</QuestionID>
+    <Id>23</Id>
+    <QuestionType>Multi_Choice</QuestionType>
+    <Options>
+      <Option>55</Option>
+      <Option>887</Option>
+      <Option>66</Option>
+      <Option> 78</Option>
+    </Options>
+    <UserAnswer></UserAnswer>
+  </RandomQuestions>
+</RandomQuestions>

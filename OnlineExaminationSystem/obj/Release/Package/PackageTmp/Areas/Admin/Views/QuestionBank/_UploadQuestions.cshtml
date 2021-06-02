@@ -1,0 +1,21 @@
+﻿<div class="animation-model">
+    <div class="md-modal md-effect-2" id="uploadModal">
+        <div class="md-content">
+            <h3>Upload Questions</h3>
+            @using (Html.BeginForm("UploadQuestion", "QuestionBank", FormMethod.Post, new { id = "", enctype = "multipart/form-data", @class = "validate dropzone", novalidate = true }))
+            {
+                <div class="fallback">
+                    <input name="file" type="file" />
+                    <div class="invalid-feedback">
+                        File required
+                    </div>
+                </div>
+                <input type="hidden" name="VaccancyID" value="@ViewBag.VaccancyID" />
+                <div class="text-center m-t-20">
+                    <button type="button" class="btn btn-danger waves-effect md-close pull-right">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

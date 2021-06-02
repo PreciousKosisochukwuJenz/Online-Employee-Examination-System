@@ -1,0 +1,105 @@
+﻿@model OnlineExaminationSystem.Areas.Admin.ViewModels.AssessmentVM
+<div class="animation-model">
+    <div class="md-modal md-effect-2" id="CreateModal">
+        <div class="md-content">
+            <h3>Add Assessment</h3>
+            @using (Html.BeginForm("CreateAssessment", "Assessment", FormMethod.Post, new { area = "Admin", @class = "validate", novalidate = true }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Description" class="col-form-label">Description</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description", required = true } })
+                                <div class="invalid-feedback">
+                                    Description required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="VaccancyID" class="col-form-label">Vaccancy</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.DropDownListFor(model => model.VaccancyID, (IEnumerable<SelectListItem>)ViewBag.Vaccancy, "-- Select vaccancy --", new { @class = "form-control", required = true })
+                                <div class="invalid-feedback">
+                                    Vaccancy required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="StartDateTime" class="col-form-label">Start Date and Time</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.StartDateTime, new { htmlAttributes = new { @class = "form-control", type="datetime-local", required = true } })
+                                <div class="invalid-feedback">
+                                    Start date and time required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EndDateTime" class="col-form-label">End Date and Time</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.EndDateTime, new { htmlAttributes = new { @class = "form-control", type = "datetime-local", required = true } })
+                                <div class="invalid-feedback">
+                                    End date and time required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Duration" class="col-form-label">Duration (in minutes)</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter duration", required = true } })
+                                <div class="invalid-feedback">
+                                    Duration required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="NumberOfQuestions" class="col-form-label">Number of Questions</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.NumberOfQuestions, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter number of question", required = true } })
+                                <div class="invalid-feedback">
+                                    Number of question required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect pull-left">Save</button>
+                    <button type="button" class="btn btn-danger waves-effect md-close pull-right">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

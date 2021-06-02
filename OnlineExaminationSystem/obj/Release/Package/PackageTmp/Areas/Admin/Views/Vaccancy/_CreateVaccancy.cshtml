@@ -1,0 +1,36 @@
+﻿@model OnlineExaminationSystem.Areas.Admin.ViewModels.VacancyVM
+<div class="animation-model">
+    <div class="md-modal md-effect-2" id="CreateModal">
+        <div class="md-content">
+            <h3>Add Vaccany</h3>
+            @using (Html.BeginForm("CreateVaccancy", "Vaccancy", FormMethod.Post, new { area = "Admin", @class = "validate", novalidate = true }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Firstname" class="col-form-label">Description</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description", required = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Description required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect pull-left">Save</button>
+                    <button type="button" class="btn btn-danger waves-effect md-close pull-right">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
