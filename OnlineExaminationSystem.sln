@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem", "OnlineExaminationSystem\OnlineExaminationSystem.csproj", "{5D6C0346-BA68-47FF-B603-0AE77059AF89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem.DAL", "OnlineExaminationSystem.DAL\OnlineExaminationSystem.DAL.csproj", "{FC015B9A-B993-4667-A7D6-5283CCF12019}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D6C0346-BA68-47FF-B603-0AE77059AF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6C0346-BA68-47FF-B603-0AE77059AF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6C0346-BA68-47FF-B603-0AE77059AF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6C0346-BA68-47FF-B603-0AE77059AF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC015B9A-B993-4667-A7D6-5283CCF12019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC015B9A-B993-4667-A7D6-5283CCF12019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC015B9A-B993-4667-A7D6-5283CCF12019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC015B9A-B993-4667-A7D6-5283CCF12019}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65D48947-1882-4D6C-9C48-A3CD367D5DE1}
+	EndGlobalSection
+EndGlobal

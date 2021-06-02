@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Position text in the middle of the page/image */
+    .bg-text {
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: white;
+        font-weight: bold;
+        border: 3px solid #f1f1f1;
+        border-radius: 20px;
+        position: absolute;
+        margin-top: 300px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .pcoded-main-container {
+      
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/Areas/Admin/Contents/images/bg.jpg);
+        background-size: cover;
+     /*   filter: blur(5px);
+        -webkit-filter: blur(5px);*/
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/css/pages.css">
+
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+
+                <div class="bg-text">
+                    <h1 style="font-size:50px">DESIGN AND IMPLEMENTATION OF AN ONLINE EMPLOYEE EXAMINATION SYSTEM</h1><br /><br />
+                    <h2 class="text-center">Login now to start your test</h2>
+                    <div class="row m-t-30">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("Start", "Test")" class="btn btn-primary btn-lg btn-block waves-effect text-center m-b-20 f-w-900">START </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/main.js"></script>
+}

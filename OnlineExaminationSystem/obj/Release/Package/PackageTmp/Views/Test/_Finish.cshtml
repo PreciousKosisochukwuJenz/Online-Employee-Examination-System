@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Start";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string AppplicantImageBase64 = Convert.ToBase64String(ViewBag.ApplicantInfo.Photo);
+    TempData["ApplicantImage"] = string.Format("data:image/gif;base64,{0}", AppplicantImageBase64);
+}
+<!-- list css -->
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/pages/list-scroll/list.css">
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/stroll/css/stroll.css">
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <h4 class="text-center text-uppercase" style="font-weight:900">Basic Data</h4><hr /><br />
+                                    <div class="d-block text-center">
+                                        <img src="@TempData["ApplicantImage"]" class="img-thumbnail img-responsive img-fluid text-center" width="50%" height="50%" alt="image" />
+                                    </div>
+                                    <ul class="basic-list">
+                                        <li>
+                                            <h6 style="white-space:nowrap">@ViewBag.ApplicantInfo.Surname @ViewBag.ApplicantInfo.Firstname @ViewBag.ApplicantInfo.Lastname</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.Gender</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.EmailAddress</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <!-- Container-fluid starts -->
+                                    <div class="container-fluid">
+                                        <h4 class="text-center text-uppercase" style="font-weight:900">Submission successful</h4><hr /><br />
+                                        <div class="alert alert-success">Thanks for participating, your accessment is submitted successfully for review.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

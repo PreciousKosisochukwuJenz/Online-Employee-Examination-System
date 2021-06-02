@@ -1,0 +1,15 @@
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\OnlineExaminationSystem.DAL.dll.config
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\OnlineExaminationSystem.DAL.dll
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\OnlineExaminationSystem.DAL.pdb
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\EntityFramework.dll
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\EntityFramework.xml
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\obj\Debug\OnlineExaminationSystem.DAL.csprojAssemblyReference.cache
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\obj\Debug\OnlineExaminationSystem.DAL.csproj.CoreCompileInputs.cache
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\obj\Debug\OnlineExaminationSystem.DAL.csproj.CopyComplete
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\obj\Debug\OnlineExaminationSystem.DAL.dll
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\obj\Debug\OnlineExaminationSystem.DAL.pdb
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\LumenWorks.Framework.IO.pdb
+C:\Users\kc\Documents\WEB PROJECTS\OnlineExaminationSystem\OnlineExaminationSystem.DAL\bin\Debug\LumenWorks.Framework.IO.xml

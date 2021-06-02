@@ -1,0 +1,217 @@
+﻿@model OnlineExaminationSystem.Areas.Admin.ViewModels.ApplicantVM
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Date-Dropper css -->
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/datedropper/css/datedropper.min.css" />
+<link href="~/Areas/Admin/Contents/assets/dropzone/dropzone.min.css" rel="stylesheet" />
+
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+                <!-- Container-fluid starts -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Authentication card start -->
+                            @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "validate", novalidate = true, enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="auth-box card">
+                                    <div class="card-block">
+                                        <div class="row m-b-20">
+                                            <div class="col-md-12">
+                                                <h3 class="text-center txt-primary" style="font-size:30px">Registration</h3>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted text-center p-b-5">Kindly fill in the fields properly.</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Surname</label>
+                                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter surname", required = true } })
+                                                    <span class="form-bar"></span>
+                                                    <div class="invalid-feedback">
+                                                        Surname required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">First name</label>
+                                                    @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter firstname", required = true } })
+                                                    <div class="invalid-feedback">
+                                                        Firstname required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Last name</label>
+                                                    @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Lastname", required = true } })
+                                                    <div class="invalid-feedback">
+                                                        Lastname required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Gender</label>
+                                                    @Html.EnumDropDownListFor(model => model.Gender, "-- Select Gender --", new { @class = "form-control", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Gender required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Date of birth</label>
+                                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control dropper-dangercolor", placeholder = "Enter date of birth", required = true, type = "text" } })
+                                                    <div class="invalid-feedback">
+                                                        Date of birth required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Nationality</label>
+                                                    @Html.EnumDropDownListFor(model => model.Nationality, "-- Select Country --", new { @class = "form-control", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Nationality required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">L.G.A</label>
+                                                    @Html.EditorFor(model => model.LGA, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter L.G.A", required = true } })
+                                                    <div class="invalid-feedback">
+                                                        L.G.A required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">State</label>
+                                                    @Html.EnumDropDownListFor(model => model.State, "-- Select State --", new { @class = "form-control", required = true })
+                                                    <div class="invalid-feedback">
+                                                        State required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Phone number</label>
+                                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter phone number", required = true } })
+                                                    <div class="invalid-feedback">
+                                                        Phone number required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Email address</label>
+                                                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$", placeholder = "Enter email address", required = true } })
+                                                    <div class="invalid-feedback">
+                                                        Email address required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Address</label>
+                                                    @Html.TextAreaFor(model => model.Address, 0, 3, new { @class = "form-control", placeholder = "Enter Address", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Address required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Job request</label>
+                                                    @Html.DropDownListFor(model => model.VaccanyID, (IEnumerable<SelectListItem>)ViewBag.Vaccancy, "-- Select Job --", new { @class = "form-control", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Job request required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <small class="form-text text-muted">Image proportion should not pass 540px x 360px</small>
+                                                        <img class="img-responsive img-thumbnail" style="position:relative" id="Logo" src="#" onchange="ShowPreview(this)" onerror="this.src='/Areas/Admin/Contents/images/images.png'" alt="Logo" />
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="LogoInp" name="passport" required />
+                                                            <label class="custom-file-label" for="customFile">Select file</label>
+                                                            <div class="invalid-feedback">
+                                                                Photo is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <small class="form-text text-muted">Upload CV document here.</small>
+                                                    <div class="col-sm-10 dropzone">
+                                                        <div class="fallback">
+                                                            <input type="file" name="doc" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <br /><br />
+                                                <h5 class="text-center">Choose your login password carefully.</h5><hr />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Password</label>
+                                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Password required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-primary">
+                                                    <label class="float-label">Confirm Password</label>
+                                                    @Html.PasswordFor(model => model.PasswordSalt, new { @class = "form-control", placeholder = "Confirm password", required = true })
+                                                    <div class="invalid-feedback">
+                                                        Password is invalid or doesn't match
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-t-30">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">SUBMIT</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- end of form -->
+                        </div>
+                        <!-- Authentication card end -->
+                    </div>
+                    <!-- end of col-sm-12 -->
+                </div>
+                <!-- end of row -->
+            </div>
+            <!-- end of container-fluid -->
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/Ajax.jquery.min.js"></script>
+<script src="~/Scripts/Previewer.js"></script>
+@section Scripts{
+    <script type="text/javascript" src="~/Areas/Admin/Contents/bower_components/datedropper/js/datedropper.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Contents/assets/pages/advance-elements/custom-picker.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/dropzone/dropzone.min.js"></script>
+}

@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Start";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string AppplicantImageBase64 = Convert.ToBase64String(ViewBag.ApplicantInfo.Photo);
+    TempData["ApplicantImage"] = string.Format("data:image/gif;base64,{0}", AppplicantImageBase64);
+}
+<!-- list css -->
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/pages/list-scroll/list.css">
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/stroll/css/stroll.css">
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <h4 class="text-center text-uppercase" style="font-weight:900">Basic Data</h4><hr /><br />
+                                    <div class="d-block text-center">
+                                        <img src="@TempData["ApplicantImage"]" class="img-thumbnail img-responsive img-fluid text-center" width="50%" height="50%" alt="image" />
+                                    </div>
+                                    <ul class="basic-list">
+                                        <li>
+                                            <h6 style="white-space:nowrap">@ViewBag.ApplicantInfo.Surname @ViewBag.ApplicantInfo.Firstname @ViewBag.ApplicantInfo.Lastname</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.Gender</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.EmailAddress</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <!-- Container-fluid starts -->
+                                    <div class="container-fluid">
+                                        <h4 class="text-center text-uppercase" style="font-weight:900">Assessment Test</h4><hr /><br />
+
+                                        @if (ViewBag.Message != null)
+                                        {
+                                            <div class="alert alert-info">They is no test available at the moment, please contact the administration</div>
+                                        }
+                                        else
+                                        {
+                                            <p><strong style="font-weight: 900">Description: </strong> @ViewBag.Assessment.Description</p>
+                                            <p><strong style="font-weight: 900">Duration: </strong> @ViewBag.Assessment.Duration minutes</p>
+                                            <p><strong style="font-weight: 900">Number of questions: </strong> @ViewBag.Assessment.NumberOfQuestions</p>
+                                        }
+
+                                        <h4 class="text-center text-uppercase" style="font-weight:900">Instruction</h4><hr /><br />
+
+                                        <h4><strong>Before the exam:</strong></h4>
+                                        <p>Please verify that the applicant's full name appears correctly within the User box at the left panel.</p>
+                                        <br>
+                                        <h4><strong>During the exam:</strong></h4>
+                                        <ul style="list-style-type:square;margin-left:30px">
+                                            <li><p>The student may not use his or her textbook, course notes, or receive help from a proctor or any other outside source.</p></li>
+                                            <li><p>Students must complete the 50-question multiple-choice exam within the 75-minute time frame allotted for the exam.</p></li>
+                                            <li><p>Students must not stop the session and then return to it. This is especially important in the online environment where the system will "time-out" and not allow the student or you to reenter the exam site.</p></li>
+                                        </ul>
+                                        <h4><strong>Support:</strong></h4>
+                                        <p>If you have any questions, please contact an management.</p>
+                                        @if (ViewBag.Message == null)
+                                        {
+                                            <div class="row m-t-30">
+                                                <div class="col-md-12">
+                                                    <a href="@Url.Action("EvalPage", "Test", new { TestID = ViewBag.Assessment.Id })" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">START</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

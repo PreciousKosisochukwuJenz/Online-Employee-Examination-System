@@ -1,0 +1,139 @@
+﻿@model OnlineExaminationSystem.Areas.Admin.ViewModels.UserVM
+<div class="animation-model">
+    <div class="md-modal md-effect-2" style="position:static" id="EditModal">
+        <div class="md-content">
+            <h3>Edit User</h3>
+            @using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { area = "Admin", @class = "validate", novalidate = true }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                <div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Firstname" class="col-form-label">Firstname</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter first name", required = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    First name required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Lastname" class="col-form-label">Last name</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter last name", required = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Last name required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Email" class="col-form-label">Email</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email", pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$", required = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Email required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="col-form-label">Phone Number</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter phone number", required = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Phone number required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Lastname" class="col-form-label">Address</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-address-book"></i>
+                                    </div>
+                                </div>
+                                @Html.TextAreaFor(model => model.Address, 0, 3, new { @class = "form-control", placeholder = "Enter address", required = true })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Address required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Username" class="col-form-label">Username</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter username", required = true, @readonly = true } })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Username required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Role" class="col-form-label">Role</label><span class="text-danger">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                @Html.DropDownListFor(model => model.RoleID, (IEnumerable<SelectListItem>)ViewBag.Roles, "-- Select role --", new { @class = "form-control", required = true, @readonly = true })
+                                <div class="valid-feedback">
+                                    Nice!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Email required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect pull-left">Update changes</button>
+                    <button type="button" class="btn btn-danger waves-effect md-close pull-right">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
