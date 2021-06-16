@@ -1161,7 +1161,7 @@
     <Content Include="Areas\Admin\Views\Assessment\ViewApplicantAnswerLog.cshtml" />
     <None Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\AdminLogin.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
@@ -1169,6 +1169,7 @@
     <Content Include="Views\Test\EvalPage.cshtml" />
     <Content Include="Views\Test\_Finish.cshtml" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
+    <Content Include="Views\Account\ClientLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

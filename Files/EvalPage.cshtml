@@ -1,0 +1,293 @@
+﻿@model IQueryable<OnlineExaminationSystem.Areas.Admin.ViewModels.TestXPaperVM>
+@using OnlineExaminationSystem.DAL.Entity;
+
+@{
+    ViewBag.Title = "Start";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    int count = 1, countR = 0;
+    var endTime = DateTime.UtcNow.AddMinutes(ViewBag.ReturnModel.Duration);
+    var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalMinutes;
+
+    string AppplicantImageBase64 = Convert.ToBase64String(ViewBag.ApplicantInfo.Photo);
+    TempData["ApplicantImage"] = string.Format("data:image/gif;base64,{0}", AppplicantImageBase64);
+}
+<style>
+    .input-group:hover {
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-control{
+        height:inherit;
+    }
+</style>
+<!-- list css -->
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/jquery.steps/css/jquery.steps.css">
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/assets/pages/list-scroll/list.css">
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Contents/bower_components/stroll/css/stroll.css">
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <h4 class="text-center text-uppercase" style="font-weight:900">Basic Data</h4><hr /><br />
+                                    <div class="d-block text-center">
+                                        <img src="@TempData["ApplicantImage"]" class="img-thumbnail img-responsive img-fluid text-center" width="50%" height="50%" alt="image" />
+                                    </div>
+                                    <ul class="basic-list">
+                                        <li>
+                                            <h6 style="white-space:nowrap">@ViewBag.ApplicantInfo.Surname @ViewBag.ApplicantInfo.Firstname @ViewBag.ApplicantInfo.Lastname</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.Gender</h6>
+                                        </li>
+                                        <li>
+                                            <h6>@ViewBag.ApplicantInfo.EmailAddress</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <h4 class="text-center text-uppercase" style="font-weight:900"><span id="minuteTime"></span>:<span id="SecondTime"></span></h4><hr /><br />
+                                    <!-- Container-fluid starts -->
+                                    <div class="container-fluid">
+                                        @if (Model != null && Model.Any())
+                                        {
+                                            <form class="wizard-form validate" id="basic-forms" novalidate>
+                                                @{
+                                                    var counter = 0;
+                                                    foreach (var question in Model)
+                                                    {
+                                                        counter++;
+                                                        <h3></h3>
+                                                        <fieldset>
+                                                            <small style="color: red">NB: You must answer current question before you can proceed to next.</small>
+                                                            <hr />
+                                                            <h5> Question @counter</h5>
+                                                            <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display: none;">@question.QuestionID</span>
+                                                            <span id="@string.Format("{0}{1}", "ID_QT", count)" style="display: none;">@question.QuestionType</span>
+                                                            <p style="border: 1px solid #d3d3d3; padding: 20px" id="@string.Format("{0}{1}", "Q", count)"> @question.Question</p>
+                                                            <br />
+                                                            @switch (question.QuestionType)
+                                                            {
+                                                                case QuestionType.Multi_Choice:
+                                                                    foreach (var choice in question.Options)
+                                                                    {
+                                                                        if (choice.OptionTxt == question.UserAnswer)
+                                                                        {
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">
+                                                                                        <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@choice.OptionTxt" required checked>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <label class="form-control" for="@string.Format("{0}{1}", "inlineRadio", countR)">@choice.OptionTxt</label>
+                                                                                <div class="invalid-feedback">
+                                                                                    Answer required
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">
+                                                                                        <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@choice.OptionTxt" required>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <label class="form-control" for="@string.Format("{0}{1}", "inlineRadio", countR)">@choice.OptionTxt</label>
+                                                                                <div class="invalid-feedback">
+                                                                                    Answer required
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                        countR++;
+                                                                    }
+                                                                    <p style="color: red" class="p-error"></p>
+                                                                    break;
+
+                                                                case QuestionType.Fill_in_the_blank:
+                                                                    <div class="form-group">
+                                                                        <span class="input-group-addon">
+                                                                            <textarea class="form-control" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" required="" value="@question.UserAnswer"></textarea>
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <p style="color: red" class="p-error"></p>
+                                                                    break;
+                                                            }
+                                                            <div id="@string.Format("{0}{1}{2}", "Ans", "Q", count)"></div>
+                                                            <hr />
+                                                        </fieldset>
+                                                        count++;
+                                                    }
+                                                }
+
+
+                                                <span id="countQuections" style="display: none;">@count</span>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <h2 class="text-center">@ViewBag.EMessage</h2>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Areas/Admin/Contents/bower_components/jquery.steps/js/jquery.steps.js"></script>
+    <script src="~/Areas/Admin/Contents/bower_components/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Areas/Admin/Contents/assets/pages/forms-wizard-validation/form-wizard.js"></script>
+
+    @if (Model != null && Model.Any())
+    {
+        <script>
+            let _tick;
+            let totalTime;
+            var remainingMinutes = @timeRemaining;
+            var convertedMinutes = parseInt(remainingMinutes);
+            var secondsCount = remainingMinutes % convertedMinutes;
+            var secondsCounter = secondsCount.toFixed(2).toString();
+            secondsCounter = secondsCounter.slice(2, 4);
+            parseFloat(secondsCounter);
+            startTick();
+
+            function formatNumber(number) {
+                if (number < 10) return "0" + number;
+                else return '' + number;
+            }
+
+            function startTick() {
+                $("#SecondTime").html(formatNumber(parseFloat(secondsCounter)));
+                $("#minuteTime").html(formatNumber(parseInt(remainingMinutes)));
+
+                _tick = setInterval(function() {
+                        if (secondsCounter > 0) {
+                            secondsCounter = secondsCounter - 1;
+                            $("#SecondTime").html(formatNumber(parseInt(secondsCounter)));
+                            $("#minuteTime").html(formatNumber(parseInt(remainingMinutes)));
+                        }
+                        if (parseInt(remainingMinutes) == 0 && parseInt(secondsCounter) == 0) {
+                            clearInterval(_tick);
+                            Submit();
+                        }
+                        if (parseInt(remainingMinutes) == 0) {
+                            $("#SecondTime").css("color", "red");
+                            $("#minuteTime").css("color", "red");
+                        }
+
+                        if (parseInt(secondsCounter) == 0) {
+                            secondsCounter = 60;
+                            remainingMinutes = remainingMinutes - 1;
+                        }
+                        if (parseInt(remainingMinutes) == 0 && parseInt(secondsCounter) == 0) {
+                            clearInterval(_tick);
+                            alert("Time has expired");
+                        }
+                    },
+                    1000);
+            }
+            function UpdateTime() {
+                var RemainaingMinutes = $("#minuteTime").html();
+                var RemainingSeconds = $("#SecondTime").html();
+
+                totalTime = parseFloat(RemainaingMinutes) + parseFloat("0."+RemainingSeconds);
+            }
+
+        </script>
+    }
+
+    <script>
+        function Submit() {
+            //count Questions
+            var sel = $('#countQuections').text();
+
+            console.log(sel);
+
+            var data = [], countQuestion = parseInt(sel), question = {}, j = 1;
+
+            for (var i = 1; i < countQuestion; i++) {
+                if ($('#ID_QT' + i).text() == "Multi_Choice") {
+                    question = {
+                        QuestionID: $('#ID_Q' + i).text(),
+                        QuestionText: $('#Q' + i).text(),
+                        AnswerQ: $('input[name=inlineRadioOptions' + i + ']:checked').val()
+                    }
+                } else {
+                    question = {
+                        QuestionID: $('#ID_Q' + i).text(),
+                        QuestionText: $('#Q' + i).text(),
+                        AnswerQ: $('textarea[name=inlineRadioOptions' + i + ']').val()
+                    }
+                }
+                data.push(question);
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("PostAnswers", "Test")',
+                data: JSON.stringify(data),
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (response) {
+                    window.location.href = "/Test/Finish";
+                },
+                error: function(response) {
+                }
+            });
+        };
+
+        function SaveProgress(progressID) {
+            var data = [],  question = {}
+            if ($('#ID_QT' + progressID).text() == "Multi_Choice") {
+                    question = {
+                        QuestionID: $('#ID_Q' + progressID).text(),
+                        QuestionText: $('#Q' + progressID).text(),
+                        AnswerQ: $('input[name=inlineRadioOptions' + progressID + ']:checked').val()
+                    }
+                } else {
+                    question = {
+                        QuestionID: $('#ID_Q' + progressID).text(),
+                        QuestionText: $('#Q' + progressID).text(),
+                        AnswerQ: $('textarea[name=inlineRadioOptions' + progressID + ']').val()
+                    }
+                }
+            data.push(question);
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SaveQuestionProgress", "Test")',
+                data: JSON.stringify(data),
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+            });
+
+              UpdateTime();
+            $.ajax({
+                type: 'POST',
+                url: '/Test/SaveQuestionProgressTime/',
+                data: {timeremaining:totalTime},
+                dataType: "json",
+            });
+        }
+
+    </script>
+}

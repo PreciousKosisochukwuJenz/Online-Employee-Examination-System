@@ -28,17 +28,16 @@ namespace OnlineExaminationSystem.Controllers
         // Action Methods
         #region Action Methods
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult AdminLogin()
         {
             return View();
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(UserVM userVM)
+        public ActionResult AdminLogin(UserVM userVM)
         {
             Session.Clear();
             var user = _userService.CheckCreditials(userVM);
-            var applicant = _userService.CheckApplicantCreditials(userVM);
             if (user.Count > 0)
             {
                 LoginSession(user);
@@ -103,7 +102,26 @@ namespace OnlineExaminationSystem.Controllers
                 }
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
-            else if(applicant.Count > 0)
+            else
+            {
+                ViewBag.ShowAlert = true;
+                TempData["message"] = "  Invalid username and password";
+                TempData["icon"] = "fa fa-times";
+            }
+            return View(userVM);
+        }
+        [AllowAnonymous]
+        public ActionResult ClientLogin()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ClientLogin(UserVM userVM)
+        {
+            Session.Clear();
+            var applicant = _userService.CheckApplicantCreditials(userVM);
+            if (applicant.Count > 0)
             {
                 ApplicantLoginSession(applicant);
                 Global.AuthenticatedApplicantID = Convert.ToInt32(Session["ApplicantID"].ToString());
@@ -117,18 +135,23 @@ namespace OnlineExaminationSystem.Controllers
             }
             return View(userVM);
         }
+
         [AllowAnonymous]
         public ActionResult Logout()
         {
             if (Session["UserId"] != null)
             {
                 Session.Clear();
+                return RedirectToAction("AdminLogin", "Account", new { area = "" });
+
             }
             if (Session["ApplicantID"] != null)
             {
                 Session.Clear();
+                return RedirectToAction("ClientLogin", "Account", new { area = "" });
+
             }
-            return RedirectToAction("Login", "Account", new { area = "" });
+            return View();
         }
         [AllowAnonymous]
         public JsonResult CheckSessionExists()

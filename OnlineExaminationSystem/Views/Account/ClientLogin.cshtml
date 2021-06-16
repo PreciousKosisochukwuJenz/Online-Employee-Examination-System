@@ -1,0 +1,137 @@
+﻿@model OnlineExaminationSystem.Areas.Admin.ViewModels.UserVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Client Login";
+}
+
+@*<section class="login-block">*@
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <!-- Container-fluid starts -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 col d-flex justify-content-center">
+                                <!-- Authentication card start -->
+                                @using (Html.BeginForm("ClientLogin", "Account", FormMethod.Post, new { @class = "validate", novalidate = true }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="row m-b-20">
+                                                <div class="col-md-12">
+                                                    <h3 class="text-center txt-primary" style="font-size:30px">Client Log In</h3>
+                                                </div>
+                                            </div>
+                                            <p class="text-muted text-center p-b-5">Login in with your creditials to access the test.</p>
+                                            <div class="form-group form-primary">
+                                                <label class="float-label">Username</label>
+                                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Username", required = true } })
+                                                <span class="form-bar"></span>
+                                               
+                                                <div class="invalid-feedback">
+                                                    Username required
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-primary">
+                                                <label class="float-label">Password</label>
+                                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password", required = true })
+                                               
+                                                <div class="invalid-feedback">
+                                                    Password required
+                                                </div>
+                                                <span class="form-bar"></span>
+                                            </div>
+                                            <div class="row m-t-25 text-left">
+                                                <div class="col-12">
+
+                                                    <div class="forgot-phone text-left float-left">
+                                                        <a href="~/Account/Registration" class="text-left f-w-600"> Register</a>
+                                                    </div>
+                                                    <div class="forgot-phone text-right float-right">
+                                                        <a href="~/Home/Index" class="text-right f-w-600"> Return to Home</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row m-t-30">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- end of form -->
+                            </div>
+                            <!-- Authentication card end -->
+                        </div>
+                        <!-- end of col-sm-12 -->
+                    </div>
+                    <!-- end of row -->
+                </div>
+                <!-- end of container-fluid -->
+            </div>
+
+        </div>
+    </div>
+
+
+
+<script>
+            function notify(message, icon, type, animIn, animOut) {
+                $.growl({
+                    icon: icon,
+                    message: message,
+                    url: ''
+                }, {
+                    element: 'body',
+                    type: type,
+                    allow_dismiss: true,
+                    offset: {
+                        x: 30,
+                        y: 30
+                    },
+                    spacing: 10,
+                    z_index: 999999,
+                    delay: 2500,
+                    timer: 1000,
+                    url_target: '_blank',
+                    mouse_over: false,
+                    animate: {
+                        enter: animIn,
+                        exit: animOut
+                    },
+                    icon_type: 'class',
+                    template: '<div data-growl="container" class="alert" role="alert">' +
+                        '<button type="button" class="close" data-growl="dismiss">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '<span class="sr-only">Close</span>' +
+                        '</button>' +
+                        '<span data-growl="icon"></span>' +
+                        '<span data-growl="title"></span>' +
+                        '<span data-growl="message"></span>' +
+                        '<a href="#" data-growl="url"></a>' +
+                        '</div>'
+                });
+            };
+
+        $(window).on('load', function () {
+            @if(ViewBag.ShowAlert == true)
+            {
+                <text>
+            var message = "@TempData["message"].ToString()";
+            var nIcons = "@TempData["icon"]";
+            var nType = "inverse"
+            var nAnimIn = "animated bounceInLeft";
+            var nAnimOut = "animated bounceOutLeft";
+            notify(message, nIcons, nType, nAnimIn, nAnimOut);
+            </text>
+            }
+        });
+</script>
+
+
